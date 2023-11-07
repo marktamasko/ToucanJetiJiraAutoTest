@@ -7,6 +7,7 @@ public class Main {
     public static void main(String[] args) {
         LoginTest loginTest = new LoginTest(new ChromeDriver());
         loginTest.goToLink();
-        loginTest.successfulLogin();
+//        loginTest.successfulLogin();
+        loginTest.emptyFieldsLogin();
     }
 }

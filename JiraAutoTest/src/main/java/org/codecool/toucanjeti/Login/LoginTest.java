@@ -16,6 +16,7 @@ public class LoginTest {
     private static final By AVATAR_ID = By.id("header-details-user-fullname");
     private static final By PROFILE_ID = By.id("view_profile");
     private static final By PROFILE_USERNAME_FIELD_ID = By.id("up-d-username");
+    private static final By ERROR_MESSAGE_CLASS = By.className("aui-message-error");
 
     public LoginTest(WebDriver driver) {
         this.driver = driver;
@@ -32,5 +33,11 @@ public class LoginTest {
         driver.findElement(PROFILE_ID).click();
         System.out.println("Logged in the right account: " +
                 driver.findElement(PROFILE_USERNAME_FIELD_ID).getText().equals(LEGIT_USERNAME));
+    }
+    public void emptyFieldsLogin() {
+        driver.findElement(USERNAME_INPUT_FIELD_ID).sendKeys("");
+        driver.findElement(PASSWORD_INPUT_FIELD_ID).sendKeys("");
+        driver.findElement(LOGIN_BUTTON_ID).click();
+        System.out.println("Error message presents: " + driver.findElement(ERROR_MESSAGE_CLASS).isDisplayed());
     }
 }
