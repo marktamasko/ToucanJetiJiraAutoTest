@@ -46,4 +46,10 @@ public class LoginTest {
         driver.findElement(LOGIN_BUTTON_ID).click();
         System.out.println("Error message presents: " + driver.findElement(ERROR_MESSAGE_CLASS).isDisplayed());
     }
+    public void legitUsernameWrongPasswordFieldsLogin() {
+        driver.findElement(USERNAME_INPUT_FIELD_ID).sendKeys(LEGIT_USERNAME);
+        driver.findElement(PASSWORD_INPUT_FIELD_ID).sendKeys(INVALID_PASSWORD);
+        driver.findElement(LOGIN_BUTTON_ID).click();
+        System.out.println("Error message presents: " + driver.findElement(ERROR_MESSAGE_CLASS).isDisplayed());
+    }
 }

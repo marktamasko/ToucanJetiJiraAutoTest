@@ -9,6 +9,7 @@ public class Main {
         loginTest.goToLink();
 //        loginTest.successfulLogin();
 //        loginTest.emptyFieldsLogin();
-        loginTest.wrongUsernamePasswordFieldsLogin();
+//        loginTest.wrongUsernamePasswordFieldsLogin();
+        loginTest.legitUsernameWrongPasswordFieldsLogin();
     }
 }
