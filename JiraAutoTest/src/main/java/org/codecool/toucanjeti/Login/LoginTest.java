@@ -62,13 +62,10 @@ public class LoginTest {
     public void runTests() {
         //Successful login
         this.successfulLogin();
-        this.closePage();
         //No username, no password
         this.emptyFieldsLogin();
-        this.closePage();
         //Wrong username, wrong password
         this.wrongUsernamePasswordFieldsLogin();
-        this.closePage();
         //Legit username, wrong password
         this.legitUsernameWrongPasswordFieldsLogin();
         this.closePage();
