@@ -8,6 +8,7 @@ public class Main {
         LoginTest loginTest = new LoginTest(new ChromeDriver());
         loginTest.goToLink();
 //        loginTest.successfulLogin();
-        loginTest.emptyFieldsLogin();
+//        loginTest.emptyFieldsLogin();
+        loginTest.wrongUsernamePasswordFieldsLogin();
     }
 }
