@@ -22,10 +22,11 @@ public class LoginTest {
         this.driver = driver;
     }
 
-    public void goToLink() {
+    private void goToLink() {
         driver.get(URL);
     }
-    public void successfulLogin() {
+    private void successfulLogin() {
+        goToLink();
         driver.findElement(USERNAME_INPUT_FIELD_ID).sendKeys(LEGIT_USERNAME);
         driver.findElement(PASSWORD_INPUT_FIELD_ID).sendKeys(LEGIT_PASSWORD);
         driver.findElement(LOGIN_BUTTON_ID).click();
@@ -34,22 +35,42 @@ public class LoginTest {
         System.out.println("Logged in the right account: " +
                 driver.findElement(PROFILE_USERNAME_FIELD_ID).getText().equals(LEGIT_USERNAME));
     }
-    public void emptyFieldsLogin() {
+    private void emptyFieldsLogin() {
+        goToLink();
         driver.findElement(USERNAME_INPUT_FIELD_ID).sendKeys("");
         driver.findElement(PASSWORD_INPUT_FIELD_ID).sendKeys("");
         driver.findElement(LOGIN_BUTTON_ID).click();
         System.out.println("Error message presents: " + driver.findElement(ERROR_MESSAGE_CLASS).isDisplayed());
     }
-    public void wrongUsernamePasswordFieldsLogin() {
+    private void wrongUsernamePasswordFieldsLogin() {
+        goToLink();
         driver.findElement(USERNAME_INPUT_FIELD_ID).sendKeys(INVALID_USERNAME);
         driver.findElement(PASSWORD_INPUT_FIELD_ID).sendKeys(INVALID_PASSWORD);
         driver.findElement(LOGIN_BUTTON_ID).click();
         System.out.println("Error message presents: " + driver.findElement(ERROR_MESSAGE_CLASS).isDisplayed());
     }
-    public void legitUsernameWrongPasswordFieldsLogin() {
+    private void legitUsernameWrongPasswordFieldsLogin() {
+        goToLink();
         driver.findElement(USERNAME_INPUT_FIELD_ID).sendKeys(LEGIT_USERNAME);
         driver.findElement(PASSWORD_INPUT_FIELD_ID).sendKeys(INVALID_PASSWORD);
         driver.findElement(LOGIN_BUTTON_ID).click();
         System.out.println("Error message presents: " + driver.findElement(ERROR_MESSAGE_CLASS).isDisplayed());
+    }
+    private void closePage() {
+        driver.close();
+    }
+    public void runTests() {
+        //Successful login
+        this.successfulLogin();
+        this.closePage();
+        //No username, no password
+        this.emptyFieldsLogin();
+        this.closePage();
+        //Wrong username, wrong password
+        this.wrongUsernamePasswordFieldsLogin();
+        this.closePage();
+        //Legit username, wrong password
+        this.legitUsernameWrongPasswordFieldsLogin();
+        this.closePage();
     }
 }
