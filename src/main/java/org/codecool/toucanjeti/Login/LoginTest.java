@@ -50,6 +50,5 @@ public class LoginTest {
         this.wrongUsernamePasswordFieldsLogin();
         //Legit username, wrong password
         this.legitUsernameWrongPasswordFieldsLogin();
-        this.closePage();
     }
 }
