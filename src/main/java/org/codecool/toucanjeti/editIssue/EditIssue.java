@@ -37,4 +37,11 @@ public class EditIssue {
         updateIssue();
     }
 
+    public void changeIssueType(String issueType) {
+        navigateToTheIssue();
+        this.webDriver.findElement(By.id("issuetype-field")).click();
+        this.webDriver.findElement(By.id("issuetype-field")).sendKeys(issueType);
+        updateIssue();
+    }
+
 }
