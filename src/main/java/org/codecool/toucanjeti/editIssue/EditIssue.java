@@ -3,7 +3,9 @@ package org.codecool.toucanjeti.editIssue;
 import org.codecool.toucanjeti.technical.Login;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
+import java.io.File;
 import java.time.Duration;
 
 public class EditIssue {
@@ -14,6 +16,10 @@ public class EditIssue {
     private static final String EDITED_ISSUE_URL = "https://jira-auto.codecool.metastage.net/browse/MTP-4389";
     private static final By EDIT_BUTTON_ID = By.id("edit-issue");
     private static final By UPDATE_BUTTON_ID = By.id("edit-issue-submit");
+    private static final String UPLOAD_FILE_PATH =
+            "/Users/rekamark/CODECOOL-marktamasko/ReStart/Test_Auto/toucanjeti/ToucanJetiJiraAutoTest/src/main/" +
+                    "resources/images/test-automation-logos.png";
+    private static final File UPLOAD_FILE = new File("src/main/resources/images/test-automation-logos.png");
 
     public EditIssue(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -51,10 +57,32 @@ public class EditIssue {
         updateIssue();
     }
 
-    public void changePriorityField(String issueType) {
+    public void changePriorityField(String priority) {
         navigateToTheIssue();
         this.webDriver.findElement(By.id("priority-field")).click();
-        this.webDriver.findElement(By.id("priority-field")).sendKeys(issueType);
+        this.webDriver.findElement(By.id("priority-field")).sendKeys(priority);
+        updateIssue();
+    }
+
+    public void changeLabelField(String label) {
+        navigateToTheIssue();
+        this.webDriver.findElement(By.id("labels-textarea")).click();
+        this.webDriver.findElement(By.id("labels-textarea")).sendKeys(label);
+        updateIssue();
+    }
+
+    public void addNewComment(String comment) {
+        navigateToTheIssue();
+        this.webDriver.findElement(By.id("comment")).click();
+        this.webDriver.findElement(By.id("comment")).sendKeys(comment);
+        updateIssue();
+    }
+
+    public void addNewAttachment() {
+        navigateToTheIssue();
+        WebElement fileInput = this.webDriver.findElement(By.cssSelector(".field-group #attachment-browse-button"));
+        fileInput.click();
+        fileInput.sendKeys(UPLOAD_FILE.getAbsolutePath());
         updateIssue();
     }
 }
