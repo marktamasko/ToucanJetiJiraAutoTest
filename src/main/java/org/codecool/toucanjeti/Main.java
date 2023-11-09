@@ -1,5 +1,6 @@
 package org.codecool.toucanjeti;
 
+import org.codecool.toucanjeti.BrowseIssue.BrowseIssuesTest;
 import org.codecool.toucanjeti.Login.LoginTest;
 import org.codecool.toucanjeti.Logout.LogoutTest;
 import org.codecool.toucanjeti.editIssue.EditIssue;
@@ -14,9 +15,6 @@ public class Main {
         LogoutTest logoutTest = new LogoutTest(driver);
         EditIssue editIssue = new EditIssue(driver);
 
-        loginTest.runTests();
-        logoutTest.logout();
-
         editIssue.changeSummaryField();
         editIssue.changeIssueType();
         editIssue.changePriorityField();
@@ -24,5 +22,12 @@ public class Main {
         editIssue.changeDescriptionField();
         editIssue.addNewAttachment();
         editIssue.addNewComment();
+
+        BrowseIssuesTest browseIssues = new BrowseIssuesTest(driver);
+        loginTest.runTests();
+        logoutTest.logout();
+        browseIssues.runTests();
+        driver.close();
+
     }
 }
