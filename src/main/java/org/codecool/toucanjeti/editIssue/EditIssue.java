@@ -10,7 +10,7 @@ import java.time.Duration;
 
 public class EditIssue {
 
-    private WebDriver webDriver;
+    private final WebDriver webDriver;
     private static final String LEGIT_USERNAME = "automation59";
     private static final String LEGIT_PASSWORD = "CCAutoTest19.";
     private static final String EDITED_ISSUE_URL = "https://jira-auto.codecool.metastage.net/browse/MTP-4389";
@@ -31,6 +31,9 @@ public class EditIssue {
     private void navigateToTheIssue() {
         Login.toJiraWith(LEGIT_USERNAME, LEGIT_PASSWORD, this.webDriver);
         this.webDriver.get(EDITED_ISSUE_URL);
+    }
+
+    private void clickEditButton() {
         this.webDriver.findElement(EDIT_BUTTON_ID).click();
         this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
     }
@@ -39,68 +42,71 @@ public class EditIssue {
         this.webDriver.findElement(UPDATE_BUTTON_ID).click();
     }
 
-    private void closePage() {
+    private void closeDriver() {
         this.webDriver.close();
     }
 
-    private void changeSummaryField(String text) {
+    public void changeSummaryField() {
         navigateToTheIssue();
+        clickEditButton();
         this.webDriver.findElement(By.id("summary")).clear();
-        this.webDriver.findElement(By.id("summary")).sendKeys(text);
+        this.webDriver.findElement(By.id("summary")).sendKeys(EditIssue.TEST_SUMMARY_FIELD);
         updateIssue();
+        closeDriver();
     }
 
-    private void changeIssueType(String issueType) {
+    public void changeIssueType() {
         navigateToTheIssue();
+        clickEditButton();
         this.webDriver.findElement(By.id("issuetype-field")).click();
-        this.webDriver.findElement(By.id("issuetype-field")).sendKeys(issueType);
+        this.webDriver.findElement(By.id("issuetype-field")).sendKeys(EditIssue.TEST_ISSUE_TYPE);
         updateIssue();
+        closeDriver();
     }
 
-    private void changeDescriptionField(String text) {
+    public void changeDescriptionField() {
         navigateToTheIssue();
+        clickEditButton();
         this.webDriver.findElement(By.id("description")).clear();
-        this.webDriver.findElement(By.id("description")).sendKeys(text);
+        this.webDriver.findElement(By.id("description")).sendKeys(EditIssue.TEST_DESCRIPTION_FIELD);
         updateIssue();
+        closeDriver();
     }
 
-    private void changePriorityField(String priority) {
+    public void changePriorityField() {
         navigateToTheIssue();
+        clickEditButton();
         this.webDriver.findElement(By.id("priority-field")).click();
-        this.webDriver.findElement(By.id("priority-field")).sendKeys(priority);
+        this.webDriver.findElement(By.id("priority-field")).sendKeys(EditIssue.TEST_PRIORITY_FIELD);
         updateIssue();
+        closeDriver();
     }
 
-    private void changeLabelField(String label) {
+    public void changeLabelField() {
         navigateToTheIssue();
+        clickEditButton();
         this.webDriver.findElement(By.id("labels-textarea")).click();
-        this.webDriver.findElement(By.id("labels-textarea")).sendKeys(label);
+        this.webDriver.findElement(By.id("labels-textarea")).sendKeys(EditIssue.TEST_LABEL_FIELD);
         updateIssue();
+        closeDriver();
     }
 
-    private void addNewComment(String comment) {
+    public void addNewComment() {
         navigateToTheIssue();
+        clickEditButton();
         this.webDriver.findElement(By.id("comment")).click();
-        this.webDriver.findElement(By.id("comment")).sendKeys(comment);
+        this.webDriver.findElement(By.id("comment")).sendKeys(EditIssue.TEST_COMMENT_FIELD);
         updateIssue();
+        closeDriver();
     }
 
-    private void addNewAttachment() {
+    public void addNewAttachment() {
         navigateToTheIssue();
+        clickEditButton();
         WebElement fileInput = this.webDriver.findElement(By.cssSelector(".field-group #attachment-browse-button"));
         fileInput.click();
         fileInput.sendKeys(UPLOAD_FILE.getAbsolutePath());
         updateIssue();
-    }
-
-    public void runEditIssueTestCases() {
-        this.changeSummaryField(TEST_SUMMARY_FIELD);
-        this.changeIssueType(TEST_ISSUE_TYPE);
-        this.changeDescriptionField(TEST_DESCRIPTION_FIELD);
-        this.changePriorityField(TEST_PRIORITY_FIELD);
-        this.changeLabelField(TEST_LABEL_FIELD);
-        this.addNewComment(TEST_COMMENT_FIELD);
-        this.addNewAttachment();
-        this.closePage();
+        closeDriver();
     }
 }
