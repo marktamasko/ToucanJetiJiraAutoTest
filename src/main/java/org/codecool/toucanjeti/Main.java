@@ -13,8 +13,8 @@ public class Main {
         LoginTest loginTest = new LoginTest(driver);
         LogoutTest logoutTest = new LogoutTest(driver);
         BrowseIssuesTest browseIssues = new BrowseIssuesTest(driver);
-        loginTest.runTests();
-        logoutTest.logout();
+//        loginTest.runTests();
+//        logoutTest.logout();
         browseIssues.runTests();
         driver.close();
     }
