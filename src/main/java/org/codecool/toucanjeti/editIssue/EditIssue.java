@@ -50,4 +50,11 @@ public class EditIssue {
         this.webDriver.findElement(By.id("description")).sendKeys(text);
         updateIssue();
     }
+
+    public void changePriorityField(String issueType) {
+        navigateToTheIssue();
+        this.webDriver.findElement(By.id("priority-field")).click();
+        this.webDriver.findElement(By.id("priority-field")).sendKeys(issueType);
+        updateIssue();
+    }
 }
