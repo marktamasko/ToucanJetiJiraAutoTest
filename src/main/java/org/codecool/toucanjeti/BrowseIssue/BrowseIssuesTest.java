@@ -57,40 +57,38 @@ public class BrowseIssuesTest {
         while (!driver.findElements(By.linkText(String.format("%d",i))).isEmpty()) {
             wait.until(ExpectedConditions.presenceOfElementLocated(LIST_OF_ISSUES_CLASS));
             wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(ISSUE_IDS_CLASS));
-//                issuesOfPages.put(
-//                        i,
-//                        driver.findElement(LIST_OF_ISSUES_CLASS)
-//                                .findElements(ISSUE_IDS_CLASS)
-//                                .stream()
-//                                .map(WebElement::getText)
-//                                .toList()
-//                );
+                issuesOfPages.put(
+                        i,
+                        driver.findElement(LIST_OF_ISSUES_CLASS)
+                                .findElements(ISSUE_IDS_CLASS)
+                                .stream()
+                                .map(WebElement::getText)
+                                .toList()
+                );
                 wait.until(ExpectedConditions.elementToBeClickable(By.linkText(String.format("%d",i))));
                 driver.findElement(By.linkText(String.format("%d",i))).click();
                 i++;
         }
-//        wait.until(ExpectedConditions.visibilityOf(driver.findElement(LIST_OF_ISSUES_CLASS)));
-//        checkPagesBackward(i,issuesOfPages);
+        i -= 1;
+        while (i != 0) {
+            wait.until(ExpectedConditions.presenceOfElementLocated(LIST_OF_ISSUES_CLASS));
+            wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(ISSUE_IDS_CLASS));
+            List<String> issueIDs = driver.findElement(LIST_OF_ISSUES_CLASS)
+                    .findElements(ISSUE_IDS_CLASS)
+                    .stream()
+                    .map(WebElement::getText)
+                    .toList();
+            System.out.println(issueIDs.equals(issuesOfPages.get(i)));
+            i--;
+            wait.until(ExpectedConditions.elementToBeClickable(By.linkText(String.format("%d",i))));
+            driver.findElement(By.linkText(String.format("%d",i))).click();
+        }
     }
-//    private void checkPagesBackward(int i, Map<Integer, List<String>> issuesOfPages) {
-//        while (driver.findElement(PREVIOUS_BUTTON_CLASS) == null) {
-//            wait.until(ExpectedConditions.visibilityOf(driver.findElement(LIST_OF_ISSUES_CLASS)));
-//            List<String> issueIDs = driver.findElement(LIST_OF_ISSUES_CLASS)
-//                    .findElements(ISSUE_IDS_CLASS)
-//                    .stream()
-//                    .map(WebElement::getText)
-//                    .toList();
-//            System.out.println(issueIDs.equals(issuesOfPages.get(i)));
-//            wait.until(ExpectedConditions.elementToBeClickable(PREVIOUS_BUTTON_CLASS));
-//            driver.findElement(PREVIOUS_BUTTON_CLASS).click();
-//            i--;
-//        }
-//    }
-//    private void filterIssuesBySearch(By filter, String filterValue, By filterInput) {
-//        getToBrowseIssues();
-//        driver.findElement(filter).click();
-//        driver.findElement(filterInput).sendKeys(filterValue);
-//        driver.findElement(filterInput).sendKeys(Keys.ENTER);
-//
-//    }
+    private void filterIssuesBySearch(By filter, String filterValue, By filterInput) {
+        getToBrowseIssues();
+        driver.findElement(filter).click();
+        driver.findElement(filterInput).sendKeys(filterValue);
+        driver.findElement(filterInput).sendKeys(Keys.ENTER);
+
+    }
 }
