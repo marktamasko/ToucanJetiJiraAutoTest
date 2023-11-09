@@ -44,4 +44,10 @@ public class EditIssue {
         updateIssue();
     }
 
+    public void changeDescriptionField(String text) {
+        navigateToTheIssue();
+        this.webDriver.findElement(By.id("description")).clear();
+        this.webDriver.findElement(By.id("description")).sendKeys(text);
+        updateIssue();
+    }
 }
