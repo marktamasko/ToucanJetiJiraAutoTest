@@ -24,8 +24,8 @@ public class Main {
         editIssue.addNewComment();
 
         BrowseIssuesTest browseIssues = new BrowseIssuesTest(driver);
-        loginTest.runTests();
-        logoutTest.logout();
+//        loginTest.runTests();
+//        logoutTest.logout();
         browseIssues.runTests();
         driver.close();
 
