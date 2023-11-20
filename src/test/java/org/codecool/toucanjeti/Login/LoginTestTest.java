@@ -1,4 +1,7 @@
-import static org.junit.jupiter.api.Assertions.*;
+package org.codecool.toucanjeti.Login;
+
+// Test
+
 class LoginTestTest {
-  
+
 }
