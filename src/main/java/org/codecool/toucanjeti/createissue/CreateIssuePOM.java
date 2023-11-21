@@ -27,21 +27,22 @@ public class CreateIssuePOM {
     }
 
     public void chooseProject(String projectName) {
-        projectInputField.clear();
-        projectInputField.sendKeys();
-        projectInputField.sendKeys(Keys.RETURN);
-        titleOfCreateIssuePopup.click();
+        setInputFieldWithOptions(projectInputField, projectName);
     }
 
     public void chooseTypeOfIssue(String type) {
-        typeInputField.clear();
-        typeInputField.sendKeys(type);
-        typeInputField.sendKeys(Keys.RETURN);
-        titleOfCreateIssuePopup.click();
+        setInputFieldWithOptions(typeInputField, type);
     }
 
     public void setSummaryOfIssue(String summary) {
         summaryTitleInput.clear();
         summaryTitleInput.sendKeys(summary);
+    }
+
+    private void setInputFieldWithOptions(WebElement element, String inputValue) {
+        element.clear();
+        element.sendKeys(inputValue);
+        element.sendKeys(Keys.RETURN);
+        titleOfCreateIssuePopup.click();
     }
 }
