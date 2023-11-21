@@ -43,6 +43,8 @@ public class MainPagePOM {
 
     @FindBy(id = "quickSearchInput")
     private WebElement searchInput;
+    @FindBy(id = "project_view_all_link")
+    private WebElement viewAllProjects;
 
     public MainPagePOM(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -92,5 +94,8 @@ public class MainPagePOM {
     public void useSearchInput(String searchText) {
         this.searchInput.click();
         this.searchInput.sendKeys(searchText);
+    }
+    public void clickOnViewAllProjects() {
+        this.viewAllProjects.click();
     }
 }
