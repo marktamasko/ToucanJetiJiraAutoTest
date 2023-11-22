@@ -25,6 +25,9 @@ public class MainPagePOM {
     @FindBy(id = "find_link")
     private WebElement issuesNavElement;
 
+    @FindBy(id = "issues_new_search_link_lnk")
+    private WebElement searchForIssuesNavElement;
+
     @FindBy(id = "greenhopper_menu")
     private WebElement boardsNavElement;
 
@@ -65,6 +68,10 @@ public class MainPagePOM {
 
     public void clickOnIssues() {
         this.issuesNavElement.click();
+    }
+
+    public void clickOnSearchForIssues() {
+        searchForIssuesNavElement.click();
     }
 
     public void clickOnBoards() {
