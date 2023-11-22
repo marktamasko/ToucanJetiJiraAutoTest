@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.time.Duration;
+
 // url: https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa
 
 public class MainPagePOM {
@@ -78,6 +80,7 @@ public class MainPagePOM {
     }
 
     public void clickOnCreate() {
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         this.createNavElement.click();
     }
 
