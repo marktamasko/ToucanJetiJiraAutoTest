@@ -6,9 +6,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.time.Duration;
+import java.util.NoSuchElementException;
+import java.util.logging.Logger;
 
 public class EditIssuePOM {
-    private static String ISSUE_URL = "https://jira-auto.codecool.metastage.net/browse/MTP-4389";
 
     @FindBy(id = "edit-issue")
     private WebElement editIssue;
@@ -34,6 +35,8 @@ public class EditIssuePOM {
     @FindBy(id = "comment")
     private WebElement comment;
 
+    private final Logger logger = Logger.getLogger(getClass().getName());
+
     private final WebDriver webDriver;
 
     public EditIssuePOM(WebDriver webDriver) {
@@ -42,12 +45,20 @@ public class EditIssuePOM {
     }
 
     public void clickEditButton() {
-        this.editIssue.click();
-        this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        try {
+            if (this.editIssue.isDisplayed()) {
+                this.editIssue.click();
+                this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+            } else {
+                throw new NoSuchElementException("Edit button is not displayed or accessible.");
+            }
+        } catch (NoSuchElementException e) {
+            this.logger.info("Exception: " + e.getMessage());
+        }
     }
 
     public void clickUpdateButton() {
-        this.editIssue.click();
+        this.updateIssue.click();
     }
 
     /**
