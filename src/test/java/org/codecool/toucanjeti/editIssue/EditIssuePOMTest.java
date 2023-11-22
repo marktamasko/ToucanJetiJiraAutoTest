@@ -1,12 +1,18 @@
 package org.codecool.toucanjeti.editIssue;
 
+import org.codecool.toucanjeti.Login.LoginPOM;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 class EditIssuePOMTest {
 
     String issueUrl = "https://jira-auto.codecool.metastage.net/browse/MTP-4389";
+    LoginPOM login;
+    EditIssuePOM editIssue;
+    WebDriver webDriver;
 
     @BeforeEach
     void setUp() {
@@ -17,26 +23,26 @@ class EditIssuePOMTest {
     }
 
     @Test
-    void changeSummaryField() {
+    void testChangeSummaryField() {
     }
 
     @Test
-    void changeIssueType() {
+    void testChangeIssueType() {
     }
 
     @Test
-    void changeDescription() {
+    void testChangeDescription() {
     }
 
     @Test
-    void changePriority() {
+    void testChangePriority() {
     }
 
     @Test
-    void changeLabel() {
+    void testChangeLabel() {
     }
 
     @Test
-    void addNewComment() {
+    void testAddNewComment() {
     }
 }
