@@ -16,20 +16,27 @@ public class LoginPOM {
     public LoginPOM(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        if (!driver.getTitle().equals(LOGIN_PAGE_TITLE)) {
-            driver.get(LOGIN_URL);
-        }
+        navigateToLoginPageIfNecessary();
     }
 
     public void enterUsername(String username) {
+        navigateToLoginPageIfNecessary();
         this.username.sendKeys(username);
     }
 
     public void enterPassword(String password) {
+        navigateToLoginPageIfNecessary();
         this.password.sendKeys(password);
     }
 
     public void clickLogIn() {
+        navigateToLoginPageIfNecessary();
         submitButton.click();
+    }
+
+    private void navigateToLoginPageIfNecessary() {
+        if (!driver.getTitle().equals(LOGIN_PAGE_TITLE)) {
+            driver.get(LOGIN_URL);
+        }
     }
 }

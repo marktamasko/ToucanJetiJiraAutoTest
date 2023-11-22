@@ -12,7 +12,8 @@ public class CreateIssuePOM {
     @FindBy(id = "project-field") private WebElement projectInputField;
     @FindBy(id = "issuetype-field") private WebElement typeInputField;
     @FindBy(id = "summary") private WebElement summaryTitleInput;
-    @FindBy(tagName = "h2") private WebElement titleOfCreateIssuePopup;
+    @FindBy(xpath = "/html/body/section/header/h2") private WebElement titleOfCreateIssuePopup;
+    @FindBy(id = "qf-field-picker-trigger") private WebElement configureFieldsDropdown;
 
     public CreateIssuePOM(WebDriver driver) {
         this.driver = driver;
@@ -32,14 +33,15 @@ public class CreateIssuePOM {
     }
 
     public void setSummaryOfIssue(String summary) {
-        summaryTitleInput.clear();
+//        summaryTitleInput.clear();
         summaryTitleInput.sendKeys(summary);
     }
 
     private void setInputFieldWithOptions(WebElement element, String inputValue) {
-        element.clear();
+        element.click();
+//        element.clear();
         element.sendKeys(inputValue);
-        element.sendKeys(Keys.RETURN);
+        element.sendKeys(Keys.ENTER);
         titleOfCreateIssuePopup.click();
     }
 }

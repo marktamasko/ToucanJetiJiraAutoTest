@@ -42,6 +42,7 @@ public class BrowseIssuesPOM {
         return missingResultDiv.isDisplayed();
     }
     public List<String> findIssueWithSearchbar(String keyword) {
+        searchbar.click();
         searchbar.sendKeys(keyword);
         searchbar.sendKeys(Keys.ENTER);
         return List.of(issueTitle.getText(), issueProjectName.getText(), issueType.getText());
