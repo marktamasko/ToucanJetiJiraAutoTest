@@ -32,10 +32,6 @@ class BrowseIssuesPOMTest {
         browseIssuePOM = new BrowseIssuesPOM(driver);
         logoutPOM = new LogoutPOM(driver);
     }
-    @AfterEach
-    void breakDown() {
-        logoutPOM.logout();
-    }
     private void login(String username, String password) {
         loginPOM.enterUsername(username);
         loginPOM.enterPassword(password);
@@ -43,10 +39,11 @@ class BrowseIssuesPOMTest {
     }
     private void navigateToIssues() {
         mainPagePOM.clickOnIssues();
+        mainPagePOM.clickOnSreachForIssues();
     }
 
     @ParameterizedTest
-    @CsvFileSource(files = "src/test/resources/LegitLoginDatas.csv")
+    @CsvFileSource(files = "src/test/resources/LegitLoginDatas.csv", numLinesToSkip = 1)
     void searchResultExistTest(String username, String password) {
         this.login(username,password);
         this.navigateToIssues();
