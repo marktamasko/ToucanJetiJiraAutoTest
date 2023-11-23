@@ -67,10 +67,12 @@ public class BrowseIssuesPOM {
         return List.of(issueTitle.getText(), issueProjectName.getText(), issueType.getText());
     }
 
-    public boolean filterIssuesByProject(String projectName) {
+    public boolean filterIssuesByProject(String projectName) throws InterruptedException {
         projectFilter.click();
+        wait.until(ExpectedConditions.elementToBeClickable(projectFilterSearchbar));
         projectFilterSearchbar.sendKeys(projectName);
         projectFilterSearchbar.sendKeys(Keys.ENTER);
+        Thread.sleep(3000);
         wait.until(ExpectedConditions.visibilityOf(paginationNextButton));
 
         List<String> issueIDs = new ArrayList<>();

@@ -61,7 +61,11 @@ class BrowseIssuesPOMTest {
         assertTrue(issueData.contains(projectName));
     }
 
-    @Test
-    void filterIssuesByProjectTest() {
+    @ParameterizedTest
+    @CsvFileSource(files = "src/test/resources/SearchDatas.csv", numLinesToSkip = 1)
+    void filterIssuesByProjectTest(String username, String password, String projectName) throws InterruptedException {
+        this.login(username, password);
+        this.navigateToIssues();
+        assertTrue(browseIssuePOM.filterIssuesByProject(projectName));
     }
 }
