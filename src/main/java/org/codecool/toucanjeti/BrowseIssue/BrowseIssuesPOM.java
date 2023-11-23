@@ -56,19 +56,23 @@ public class BrowseIssuesPOM {
         return missingResultDiv.isDisplayed();
     }
 
-    public List<String> findIssueWithSearchbar(String keyword) {
+    public List<String> findIssueWithSearchbar(String keyword) throws InterruptedException {
+        wait.until(ExpectedConditions.elementToBeClickable(searchbar));
         searchbar.sendKeys(keyword);
         searchbar.sendKeys(Keys.ENTER);
+        Thread.sleep(3000);
         wait.until(ExpectedConditions.visibilityOf(issueTitle));
         wait.until(ExpectedConditions.visibilityOf(issueProjectName));
         wait.until(ExpectedConditions.visibilityOf(issueType));
         return List.of(issueTitle.getText(), issueProjectName.getText(), issueType.getText());
     }
 
-    public boolean filterIssuesByProject(String projectName) {
+    public boolean filterIssuesByProject(String projectName) throws InterruptedException {
         projectFilter.click();
+        wait.until(ExpectedConditions.elementToBeClickable(projectFilterSearchbar));
         projectFilterSearchbar.sendKeys(projectName);
         projectFilterSearchbar.sendKeys(Keys.ENTER);
+        Thread.sleep(3000);
         wait.until(ExpectedConditions.visibilityOf(paginationNextButton));
 
         List<String> issueIDs = new ArrayList<>();
