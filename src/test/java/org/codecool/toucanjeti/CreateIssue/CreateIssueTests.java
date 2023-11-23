@@ -53,8 +53,8 @@ public class CreateIssueTests {
         mainPage.clickOnSearchForIssues();
         List<String> searchResultDetails = browseIssues.findIssueWithSearchbar(uuid.toString());
 
-//        System.out.println(searchResultDetails);
-//        System.out.println(projectName + " " + issueType + " " + uuid);
+        System.out.println(searchResultDetails);
+        System.out.println(projectName + " " + issueType + " " + uuid);
 
         String resultSummaryTitle = searchResultDetails.get(0);
         String resultProjectName = searchResultDetails.get(1);

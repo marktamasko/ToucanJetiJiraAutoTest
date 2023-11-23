@@ -33,13 +33,12 @@ public class CreateIssuePOM {
     }
 
     public void setSummaryOfIssue(String summary) {
-//        summaryTitleInput.clear();
+        summaryTitleInput.clear();
         summaryTitleInput.sendKeys(summary);
     }
 
     private void setInputFieldWithOptions(WebElement element, String inputValue) {
         element.click();
-//        element.clear();
         element.sendKeys(inputValue);
         element.sendKeys(Keys.ENTER);
         titleOfCreateIssuePopup.click();
