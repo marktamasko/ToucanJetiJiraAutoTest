@@ -4,6 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 import java.time.Duration;
 
@@ -12,6 +16,7 @@ import java.time.Duration;
 public class MainPagePOM {
 
     private final WebDriver webDriver;
+    private final WebDriverWait wait;
 
     @FindBy(id = "logo")
     private WebElement homeButton;
@@ -48,9 +53,12 @@ public class MainPagePOM {
 
     @FindBy(id = "quickSearchInput")
     private WebElement searchInput;
+    @FindBy(id = "issues_new_search_link")
+    private WebElement optionOfIssuesNavElement;
 
     public MainPagePOM(WebDriver webDriver) {
         this.webDriver = webDriver;
+        this.wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
         PageFactory.initElements(webDriver, this);
     }
 
@@ -68,6 +76,10 @@ public class MainPagePOM {
 
     public void clickOnIssues() {
         this.issuesNavElement.click();
+    }
+    public void clickOnSreachForIssues() {
+        wait.until(ExpectedConditions.elementToBeClickable(optionOfIssuesNavElement));
+        this.optionOfIssuesNavElement.click();
     }
 
     public void clickOnSearchForIssues() {
