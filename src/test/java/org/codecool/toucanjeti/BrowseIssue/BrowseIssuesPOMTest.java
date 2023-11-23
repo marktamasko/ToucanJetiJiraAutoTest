@@ -12,6 +12,8 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BrowseIssuesPOMTest {
@@ -50,11 +52,20 @@ class BrowseIssuesPOMTest {
         assertTrue(browseIssuePOM.searchResultExist("asfaegebehrb"));
     }
 
-    @Test
-    void findIssueWithSearchbarTest() {
+    @ParameterizedTest
+    @CsvFileSource(files = "src/test/resources/SearchDatas.csv", numLinesToSkip = 1)
+    void findIssueWithSearchbarTest(String username, String password, String projectName) throws InterruptedException {
+        this.login(username, password);
+        this.navigateToIssues();
+        List<String> issueData = browseIssuePOM.findIssueWithSearchbar(projectName);
+        assertTrue(issueData.contains(projectName));
     }
 
-    @Test
-    void filterIssuesByProjectTest() {
+    @ParameterizedTest
+    @CsvFileSource(files = "src/test/resources/SearchDatas.csv", numLinesToSkip = 1)
+    void filterIssuesByProjectTest(String username, String password, String projectName) throws InterruptedException {
+        this.login(username, password);
+        this.navigateToIssues();
+        assertTrue(browseIssuePOM.filterIssuesByProject(projectName));
     }
 }
