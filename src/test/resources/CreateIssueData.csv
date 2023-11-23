@@ -1,6 +1,4 @@
 USERNAME, PASSWORD, PROJECT NAME, ISSUE TYPE
-automation57,CCAutoTest19.,JETI,Story
-automation57,CCAutoTest19.,JETI,Bug
-automation57,CCAutoTest19.,COALA,Task
-automation57,CCAutoTest19.,COALA,Bug
-
+automation57,CCAutoTest19.,TOUCAN,Story
+automation59,CCAutoTest19.,TOUCAN,Story
+automation59,CCAutoTest19.,TOUCAN,Task

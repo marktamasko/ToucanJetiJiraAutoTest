@@ -1,16 +1,19 @@
 package org.codecool.toucanjeti.BrowseIssue;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class BrowseIssuesPOM {
     private final WebDriver driver;
@@ -56,10 +59,15 @@ public class BrowseIssuesPOM {
         return missingResultDiv.isDisplayed();
     }
 
-    public List<String> findIssueWithSearchbar(String keyword) {
+    public List<String> findIssueWithSearchbar(String keyword) throws InterruptedException {
         searchbar.click();
         searchbar.sendKeys(keyword);
         searchbar.sendKeys(Keys.ENTER);
+        Thread.sleep(3000);
+        FluentWait<WebDriver> fluentWait = new FluentWait<>(driver);
+        fluentWait.withTimeout(Duration.ofSeconds(5));
+        fluentWait.pollingEvery(Duration.ofSeconds(1));
+        fluentWait.ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.visibilityOf(issueTitle));
         wait.until(ExpectedConditions.visibilityOf(issueProjectName));
         wait.until(ExpectedConditions.visibilityOf(issueType));

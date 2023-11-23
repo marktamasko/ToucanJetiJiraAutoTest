@@ -38,7 +38,7 @@ public class CreateIssueTests {
 
     @ParameterizedTest(name = "[{index}] {arguments}")
     @CsvFileSource(files = "src/test/resources/CreateIssueData.csv", numLinesToSkip = 1)
-    public void testIssueCreation(String username, String password, String projectName, String issueType) {
+    public void testIssueCreation(String username, String password, String projectName, String issueType) throws InterruptedException {
         UUID uuid = UUID.randomUUID();
         String summary = projectName + " " + issueType + " " + uuid;
         login.enterUsername(username);
@@ -53,9 +53,6 @@ public class CreateIssueTests {
         mainPage.clickOnSearchForIssues();
         List<String> searchResultDetails = browseIssues.findIssueWithSearchbar(uuid.toString());
 
-        System.out.println(searchResultDetails);
-        System.out.println(projectName + " " + issueType + " " + uuid);
-
         String resultSummaryTitle = searchResultDetails.get(0);
         String resultProjectName = searchResultDetails.get(1);
         String resultIssueType = searchResultDetails.get(2);
@@ -63,6 +60,11 @@ public class CreateIssueTests {
         boolean resultTitleIncludesUUID = resultSummaryTitle.contains(uuid.toString());
         boolean resultProjectNameIncludesTestDataProjectName = resultProjectName.contains(projectName);
         boolean resultIssueTypeIncludesTestDataIssueType = resultIssueType.contains(issueType);
+
+        if (!resultProjectNameIncludesTestDataProjectName || !resultIssueTypeIncludesTestDataIssueType) {
+            System.out.println("Project name should include: '" + projectName + "' and it is '" + resultProjectName + "'");
+            System.out.println("Project issue type should be: " + issueType + " and it is '" + issueType + "'");
+        }
 
         assertTrue(resultTitleIncludesUUID);
         assertTrue(resultProjectNameIncludesTestDataProjectName);

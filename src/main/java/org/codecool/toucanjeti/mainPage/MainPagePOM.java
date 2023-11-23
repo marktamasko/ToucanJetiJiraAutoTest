@@ -75,6 +75,7 @@ public class MainPagePOM {
     }
 
     public void clickOnIssues() {
+        wait.until(ExpectedConditions.elementToBeClickable(issuesNavElement));
         this.issuesNavElement.click();
     }
     public void clickOnSreachForIssues() {
