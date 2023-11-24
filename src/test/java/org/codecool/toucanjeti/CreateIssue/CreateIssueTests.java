@@ -16,6 +16,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.util.List;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CreateIssueTests {
@@ -39,8 +40,9 @@ public class CreateIssueTests {
     @ParameterizedTest(name = "[{index}] {arguments}")
     @CsvFileSource(files = "src/test/resources/CreateIssueData.csv", numLinesToSkip = 1)
     public void testIssueCreation(String username, String password, String projectName, String issueType) throws InterruptedException {
-        UUID uuid = UUID.randomUUID();
+        String uuid = UUID.randomUUID().toString();
         String summary = projectName + " " + issueType + " " + uuid;
+
         login.enterUsername(username);
         login.enterPassword(password);
         login.clickLogIn();
@@ -49,26 +51,9 @@ public class CreateIssueTests {
         createIssue.chooseTypeOfIssue(issueType);
         createIssue.setSummaryOfIssue(summary);
         createIssue.clickOnCreateButton();
-        mainPage.clickOnIssues();
-        mainPage.clickOnSearchForIssues();
-        List<String> searchResultDetails = browseIssues.findIssueWithSearchbar(uuid.toString());
+        List<String> searchResultDetails = searchForCreatedIssueAndGetDetails(uuid);
 
-        String resultSummaryTitle = searchResultDetails.get(0);
-        String resultProjectName = searchResultDetails.get(1);
-        String resultIssueType = searchResultDetails.get(2);
-
-        boolean resultTitleIncludesUUID = resultSummaryTitle.contains(uuid.toString());
-        boolean resultProjectNameIncludesTestDataProjectName = resultProjectName.contains(projectName);
-        boolean resultIssueTypeIncludesTestDataIssueType = resultIssueType.contains(issueType);
-
-        if (!resultProjectNameIncludesTestDataProjectName || !resultIssueTypeIncludesTestDataIssueType) {
-            System.out.println("Project name should include: '" + projectName + "' and it is '" + resultProjectName + "'");
-            System.out.println("Project issue type should be: " + issueType + " and it is '" + issueType + "'");
-        }
-
-        assertTrue(resultTitleIncludesUUID);
-        assertTrue(resultProjectNameIncludesTestDataProjectName);
-        assertTrue(resultIssueTypeIncludesTestDataIssueType);
+        assertTrue(assertIfFoundIssueDetailsCorrespondWithGivenDetailsAtCreation(searchResultDetails, uuid, projectName, issueType));
     }
 
     @AfterEach
@@ -79,5 +64,25 @@ public class CreateIssueTests {
     @AfterAll
     public static void tearDown() {
         driver.close();
+    }
+
+    private List<String> searchForCreatedIssueAndGetDetails(String uuid) throws InterruptedException {
+        mainPage.clickOnIssues();
+        mainPage.clickOnSearchForIssues();
+
+        return browseIssues.findIssueWithSearchbar(uuid);
+    }
+
+    private boolean assertIfFoundIssueDetailsCorrespondWithGivenDetailsAtCreation(List<String> searchResultdetails, String uuid, String projectName, String issueType) {
+        boolean correspondence = searchResultdetails.get(0).contains(uuid) &&
+                searchResultdetails.get(1).contains(projectName) &&
+                searchResultdetails.get(2).contains(issueType);
+
+        if (!correspondence) {
+            System.out.println("Project name should include: '" + projectName + "' and it is '" + searchResultdetails.get(1) + "'");
+            System.out.println("Project issue type should be: " + issueType + " and it is '" + issueType + "'");
+        }
+
+        return correspondence;
     }
 }
