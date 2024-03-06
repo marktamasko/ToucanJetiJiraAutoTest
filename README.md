@@ -11,7 +11,7 @@
 <h1 align="center">Jira Autotest</h1>
 
   <p align="center">
-    Our team created automated tests for Jira Software.
+    Our team tested Jira software with automated tests.
     <br />
     <a href="https://github.com/marktamasko/ToucanJetiJiraAutoTest"><strong>Explore the docs »</strong></a>
     <br />
