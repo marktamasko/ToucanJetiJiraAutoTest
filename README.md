@@ -1,23 +1,3 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
-<a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -105,13 +85,9 @@ Please look at the core requirements for the project:
 
 1. Clone the repo
    ```sh
-   git clone git@github.com:marktamasko/ToucanJetiJiraAutoTest.git
+   git clone https://github.com/marktamasko/ToucanJetiJiraAutoTest.git
    ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-3. Run the test files
+2. Run the desired test from `src/test/java/org/codecool/toucanjeti`
 
 <p align="right"><a href="#readme-top">:top:</a></p>
 
@@ -135,7 +111,7 @@ The user can test the project browsing feature.
 <!-- CONTRIBUTING -->
 ## Contributing
 
-This project was made by three Codecool students: Dudás Dominik, Péterfi László, Cselőtei Gergely
+This project was made by three Codecool students: Cselőtei Gergely, Márk Tamaskó, Kovács Árpád
 
 <p align="right"><a href="#readme-top">:top:</a></p>
 
@@ -148,7 +124,7 @@ This project was made by three Codecool students: Dudás Dominik, Péterfi Lász
 :man_technologist: Árpád Kovács -  [![LinkedIn][linkedin-shield]][linkedin-Árpád]<br>
 :man_technologist: Márk Tamaskó -  [![LinkedIn][linkedin-shield]][linkedin-Márk]<br>
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/marktamasko/ToucanJetiJiraAutoTest](https://github.com/marktamasko/ToucanJetiJiraAutoTest)
 
 <p align="right"><a href="#readme-top">:top:</a></p>
 
