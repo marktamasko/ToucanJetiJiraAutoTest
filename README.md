@@ -1,3 +1,5 @@
+<a name="readme-top"></a>
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -55,7 +57,7 @@
 
 The goal of the project was to write automated tests with Selenium WebDriver in Java to test Jira Software with the given accounts. Afterward the code was refactored to apply POM design pattern and OOP principles into the project.
 
-<p align="right"><a href="#readme-top">:top:</a></p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -64,7 +66,7 @@ The goal of the project was to write automated tests with Selenium WebDriver in 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) <br>
 ![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=Selenium&logoColor=white)
 
-<p align="right"><a href="#readme-top">:top:</a></p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -89,7 +91,7 @@ Please look at the core requirements for the project:
    ```
 2. Run the desired test from `src/test/java/org/codecool/toucanjeti`
 
-<p align="right"><a href="#readme-top">:top:</a></p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -104,7 +106,7 @@ The user can test the issue browsing feature. <br>
 The user can test the issue editing feature. <br>
 The user can test the project browsing feature.
 
-<p align="right"><a href="#readme-top">:top:</a></p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -113,7 +115,7 @@ The user can test the project browsing feature.
 
 This project was made by three Codecool students: Cselőtei Gergely, Márk Tamaskó, Kovács Árpád
 
-<p align="right"><a href="#readme-top">:top:</a></p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -126,7 +128,7 @@ This project was made by three Codecool students: Cselőtei Gergely, Márk Tamas
 
 Project Link: [https://github.com/marktamasko/ToucanJetiJiraAutoTest](https://github.com/marktamasko/ToucanJetiJiraAutoTest)
 
-<p align="right"><a href="#readme-top">:top:</a></p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
